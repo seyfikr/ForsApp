@@ -22,9 +22,9 @@ public class HomeController : Controller
         }
         if (category != 0)
         {
-            products = products.Where(p => p.CatetoryId == category).ToList();
+            products = products.Where(p => p.CategoryId  == category).ToList();
         }
-        ViewBag.Categories = new SelectList(Repository.Categories, "CategoryId", "Name", category);
+        ViewBag.Categories = new SelectList(Repository.Categories, "CategoryId", "Name");
         return View(products);
     }
     [HttpPost]
@@ -36,7 +36,8 @@ public class HomeController : Controller
             Repository.Products.Add(model);
             return RedirectToAction("Index");
         }
-        return View(model);
+        Repository.CreateProduct(model);
+        return RedirectToAction("Index");
     }
     [HttpGet]
     public IActionResult Create()
