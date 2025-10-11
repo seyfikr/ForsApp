@@ -3,36 +3,45 @@
 ViewData["Title"] = "Create";
 }
 
-<form asp-action="Create" asp-controller="Home" method="post">
+<form asp-action="Create" asp-controller="Home" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All"></div>
     <div class="mb-3">
         <label asp-for="Name" class="form-label"></label>
         <input asp-for="Name" class="form-control">
+        <span asp-validation-for="Name"></span>
     </div>
 
     <div class="mb-3">
         <label asp-for="Price" class="form-label"></label>
         <input asp-for="Price" class="form-control">
+        <span asp-validation-for="Price"></span>
+
     </div>
 
-    <div class="mb-3">
-        <label asp-for="Image" class="form-label">Image</label>
-        <input asp-for="Image" class="form-control">
+    <div class="input-group mb-3">
+      <input type="file" name="imageFile" id="imageFile" class="form-control">
+
     </div>
 
     <div class="mb-3">
         <label asp-for="CategoryId " class="form-label">Category</label>
         <select asp-for="CategoryId "  class="form-select">
+        
             @foreach (var item in ViewBag.Categories)
             {
             <option value="@item.CategoryId ">@item.Name</option>
             }
         </select>
+        <span asp-validation-for="CategoryId"></span>
+
     </div>
 
     <div class="mb-3 form-check">
         <input type="hidden" name="IsActive" value="false" />
         <input asp-for="IsActive"  class="form-check-input">
         <label asp-for="IsActive" class="form-check-label">Is Active</label>
+        <span asp-validation-for="IsActive"></span>
+
     </div>
 
     <button type="submit" class="btn btn-primary">Kaydet</button>

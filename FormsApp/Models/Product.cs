@@ -12,13 +12,14 @@ public class Product
 
     [Display(Name = "Urun Adı")]
     [Required]
-    public string Name { get; set; } = string.Empty;
+    public string? Name { get; set; }
 
-
+    [Required]
+    [Range(0,100000)]
     [Display(Name = "Fiyat")]
-    public Decimal Price { get; set; }
+    public Decimal? Price { get; set; }
 
-
+    
     [Display(Name = "Resim")]
     public string Image { get; set; } = string.Empty;
 
